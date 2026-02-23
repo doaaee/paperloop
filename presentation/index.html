@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaperLoop - Winning Pitch Deck</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00FF88; /* Cyber Green */
+            --secondary: #0F172A; /* Slate 900 */
+            --accent: #D4FF00; /* Neon Lime */
+            --text-light: #F8FAFC;
+            --white: #FFFFFF;
+            --gradient: linear-gradient(135deg, #00FF88 0%, #D4FF00 100%);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: #020617;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow: hidden; 
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* LANG BUTTON */
+        #langBtn {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            z-index: 1000;
+            padding: 10px 20px;
+            background: var(--secondary);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 800;
+            font-family: 'Outfit';
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.2);
+        }
+
+        #langBtn:hover {
+            transform: scale(1.1);
+            background: var(--primary);
+            color: var(--secondary);
+        }
+
+        /* SLIDE SYSTEM */
+        .slides-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: scale(1.05);
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+            z-index: 10;
+        }
+
+        h1, h2, h3 { font-family: 'Outfit', sans-serif; font-weight: 900; }
+        
+        .slide-title {
+            font-size: 64px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            letter-spacing: -3px;
+        }
+
+        .slide-title span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* COVER SLIDE */
+        .cover {
+            background: var(--secondary);
+            color: var(--white);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .cover .logo-icon {
+            font-size: 100px;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cover h1 { font-size: 140px; letter-spacing: -8px; line-height: 0.9; }
+        .cover p { font-size: 32px; font-weight: 300; opacity: 0.8; margin-top: 10px; letter-spacing: 2px; }
+        .cover .badge {
+            margin-top: 60px;
+            padding: 12px 40px;
+            border: 2px solid var(--primary);
+            border-radius: 100px;
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* GENERIC CONTENT */
+        .content {
+            padding: 60px 100px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        /* GRID SYSTEMS */
+        .grid-2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 60px; height: 100%; align-items: center; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+
+        /* PROBLEM / DATA SLIDE */
+        .stat-card {
+            background: var(--secondary);
+            color: white;
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            position: relative;
+        }
+        .stat-card .value { font-size: 90px; color: var(--primary); font-weight: 900; line-height: 1; }
+        .stat-card .label { font-size: 20px; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* DECORATIONS */
+        .bg-blob {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: var(--primary);
+            filter: blur(150px);
+            opacity: 0.1;
+            top: -200px;
+            right: -200px;
+            z-index: 1;
+        }
+
+        /* SOLUTION TILES */
+        .doa-tile {
+            padding: 40px;
+            border-radius: 24px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease;
+        }
+        .doa-tile:hover { transform: translateY(-10px); }
+        .doa-tile .icon { 
+            width: 80px; height: 80px; 
+            background: var(--secondary); 
+            color: var(--primary);
+            border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 40px; margin-bottom: 25px;
+        }
+        .doa-tile h3 { font-size: 32px; margin-bottom: 15px; color: var(--secondary); }
+
+        /* MOCKUP AREA */
+        .mockup-container {
+            background: #e2e8f0;
+            border-radius: 24px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #64748b;
+            border: 2px dashed #cbd5e1;
+            position: relative;
+        }
+
+        /* LISTS */
+        .impact-list { list-style: none; }
+        .impact-list li {
+            font-size: 28px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .impact-list i { color: var(--primary); margin-top: 8px; font-size: 32px; }
+
+        /* COMPARISON */
+        .comp-table { width: 100%; border-collapse: separate; border-spacing: 0 15px; }
+        .comp-table td { padding: 25px; background: #f1f5f9; font-size: 22px; }
+        .comp-table td:first-child { border-radius: 16px 0 0 16px; font-weight: 700; width: 40%; }
+        .comp-table td:last-child { border-radius: 0 16px 16px 0; background: #00ff8820; color: #064e3b; border-left: 4px solid var(--primary); }
+
+        /* NAVIGATION CONTROLS */
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .control-btn:hover {
+            background: var(--primary);
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 6px;
+            background: var(--gradient);
+            z-index: 110;
+            transition: width 0.3s ease;
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 35px;
+            left: 35px;
+            color: rgba(255,255,255,0.5);
+            font-weight: 700;
+            z-index: 100;
+            font-family: 'Outfit', sans-serif;
+            transition: color 0.3s ease;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <button id="langBtn" onclick="toggleLanguage()">EN</button>
+    <div class="progress-bar" id="progress"></div>
+    <div class="slide-counter" id="counter">1 / 8</div>
+
+    <div class="slides-container">
+        <div class="slide cover active" id="slide-0">
+            <div class="logo-icon"><i class="fa-solid fa-leaf"></i></div>
+            <h1 id="s0-t">PaperLoop</h1>
+            <p id="s0-st">REDEFINIENDO EL RECICLAJE UNIVERSITARIO</p>
+            <div class="badge" id="s0-b">MODELO D.O.A. 2026</div>
+        </div>
+
+        <div class="slide" id="slide-1">
+            <div class="bg-blob"></div>
+            <div class="content">
+                <h2 class="slide-title" id="s1-t">El <span>Problema</span> invisible</h2>
+                <div class="grid-2" style="grid-template-columns: 1fr 1fr; gap: 40px;">
+                    <div>
+                        <p id="s1-p1" style="font-size: 32px; line-height: 1.4; color: #334155;">
+                            Las universidades generan grandes volúmenes de papel que terminan en la basura común por una simple razón: 
+                            <strong style="color: var(--secondary)">La falta de incentivos directos.</strong>
+                        </p>
+                        <p id="s1-p2" style="margin-top: 30px; font-size: 22px; color: #64748b;">
+                            Existe la intención, pero no el hábito. La brecha entre conciencia y acción es nuestro campo de batalla.
+                            <br>
+                            <strong style="color: #a3ff33;">PaperLoop</strong> parte de una idea sencilla: cuando el residuo tiene valor, el hábito cambia. 
+                        </p>
+                    </div>
+                    
+                      <div class="stat-card" style="padding: 40px; width: 100%; max-width: 450px; justify-self: end;">
+                        <div id="s1-stat" class="label" style="font-size: 24px; line-height: 1.4; opacity: 1;">
+                            El papel es uno de los residuos más relevantes en entornos educativos
+                        </div>
+                        <p id="s1-src" style="margin-top: 25px; font-size: 14px; opacity: 0.6;">
+                            Fuente: ASPAPEL (2012). “Recuperación de papel en universidades”.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-2">
+            <div class="content">
+                <h2 class="slide-title" id="s2-t">La <span>Voz</span> del Estudiante</h2>
+                <div class="grid-2" style="grid-template-columns: 1fr 1fr;">
+                    <div class="stat-card" style="background: var(--gradient); color: var(--secondary);">
+                        <div class="value" style="color: var(--secondary);">1.075</div>
+                        <div id="s2-stat-l" class="label" style="color: var(--secondary); font-weight: 700;">Estudiantes encuestados</div>
+                        <p id="s2-stat-p" style="font-size: 18px; margin-top: 15px;">Murcia, Almería, Málaga y Extremadura.</p>
+                    </div>
+                    <div>
+                        <ul class="impact-list" id="s2-list">
+                            <li><i class="fa-solid fa-circle-check"></i> Actitud pro-sostenible confirmada.</li>
+                            <li><i class="fa-solid fa-circle-xmark" style="color: #ff4d4d;"></i> Brecha teoría-práctica detectada.</li>
+                            <li><i class="fa-solid fa-bolt"></i> Mayor integración institucional demandada.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="s2-footer" style="margin-top: 30px; font-size: 0.85em; color: #777; font-style: italic; border-top: 1px solid #eee; padding-top: 10px;">
+                    Albarracín Esparza, L., León Gómez, A., Gallardo Vázquez, D., Valls Martínez, M. D. C., & Soriano Román, R. Universidad y sostenibilidad: así lo ve el alumnado.
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" style="background: var(--secondary); color: white;" id="slide-3">
+            <div class="content">
+                <h2 class="slide-title" id="s3-t" style="color: white;">Nuestra <span>Solución</span></h2>
+                <div class="grid-2" style="grid-template-columns: 0.8fr 1.2fr;">
+                    <div class="mockup-container" style="background: #1e293b; border-color: #334155; height: 350px;">
+                        <i class="fa-solid fa-mobile-screen" style="font-size: 120px; color: var(--primary); opacity: 0.2;"></i>
+                        <div style="position: absolute; text-align: center;">
+                            <h4 style="font-size: 32px; color: white;">App PaperLoop</h4>
+                            <p id="s3-app" style="color: var(--primary); font-weight: bold;">Escanea · Recicla · Gana</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 id="s3-h3" style="font-size: 48px; margin-bottom: 20px; color: var(--primary);">Activamos valor donde hoy solo hay residuo.</h3>
+                        <p id="s3-p" style="font-size: 26px; line-height: 1.4; opacity: 0.9;">
+                            Es un <strong>ecosistema digital</strong> que conecta la generación de residuos con beneficios económicos locales.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-4">
+            <div class="content">
+                <h2 class="slide-title">Modelo <span>D.O.A.</span></h2>
+                <div class="grid-3">
+                    <div class="doa-tile">
+                        <div class="icon"><i class="fa-solid fa-leaf"></i></div>
+                        <h3 class="doa-h">Donate</h3>
+                        <p class="doa-p">Depósito de papel en puntos inteligentes estratégicos.</p>
+                    </div>
+                    <div class="doa-tile">
+                        <div class="icon"><i class="fa-solid fa-gears"></i></div>
+                        <h3 class="doa-h">Optimize</h3>
+                        <p class="doa-p">Gestión mediante operadores locales. Eficiencia logística.</p>
+                    </div>
+                    <div class="doa-tile" style="border-color: var(--primary); background: #f0fff4;">
+                        <div class="icon" style="background: var(--gradient); color: var(--secondary);"><i class="fa-solid fa-cart-shopping"></i></div>
+                        <h3 class="doa-h">Acquire</h3>
+                        <p class="doa-p">Eco-créditos canjeables en servicios universitarios.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-5">
+            <div class="content">
+                <h2 class="slide-title" id="s5-t">Impacto <span>Institucional</span></h2>
+                <div class="grid-2">
+                    <div>
+                        <ul class="impact-list" id="s5-list">
+                            <li><i class="fa-solid fa-check-double"></i> Cumplimiento ODS 12 y 13.</li>
+                            <li><i class="fa-solid fa-chart-line"></i> Datos reales de reciclaje.</li>
+                            <li><i class="fa-solid fa-piggy-bank"></i> Optimización de costes.</li>
+                            <li><i class="fa-solid fa-users"></i> Participación de la comunidad universitaria.</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f1f5f9; padding: 60px; border-radius: 32px; border-left: 8px solid var(--primary);">
+                        <h3 id="s5-box-t" style="color: var(--secondary); margin-bottom: 25px; font-size: 38px;">Economía Circular</h3>
+                        <p id="s5-box-p" style="font-size: 24px; line-height: 1.5; color: #334155;">El valor del residuo vuelve al estudiante y al comercio local, creando un ciclo de riqueza sostenible.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-6">
+            <div class="content">
+                <h2 class="slide-title" id="s6-t"> Nuestra ventaja <span>competitiva</span></h2>
+                <table class="comp-table" id="s6-table">
+                    <tr>
+                        <td>Sistemas Actuales</td>
+                        <td>Basados en la ética (Participación baja)</td>
+                    </tr>
+                    <tr>
+                        <td>Puntos Limpios</td>
+                        <td>Lejos del usuario (Fricción alta)</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--secondary);">PaperLoop</td>
+                        <td>Basado en incentivos (Acción inmediata)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="slide cover" id="slide-7" style="background: var(--gradient);">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+                <i class="fa-solid fa-leaf" style="font-size: 80px; color: var(--secondary);"></i>
+                <h2 style="font-size: 80px; color: var(--secondary); letter-spacing: -4px; margin: 0;">PaperLoop</h2>
+            </div>
+            <p id="s7-p" style="color: var(--secondary); font-weight: 700; margin-top: 10px;">No reinventamos el reciclaje.<br>Lo hacemos relevante.</p>
+            <div id="s7-thanks" style="margin-top: 40px; color: var(--secondary); font-size: 24px; font-weight: 700;">
+                GRACIAS POR SU ATENCIÓN
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="control-btn" id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="control-btn" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progressBar = document.getElementById('progress');
+        const counter = document.getElementById('counter');
+        const langBtn = document.getElementById('langBtn');
+        
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+        let currentLang = 'ES';
+
+        const translations = {
+            ES: {
+                btn: "EN",
+                s0_st: "REDEFINIENDO EL RECICLAJE UNIVERSITARIO",
+                s0_b: "MODELO D.O.A. 2026",
+                s1_t: "El <span>Problema</span> invisible",
+                s1_p1: 'Las universidades generan grandes volúmenes de papel que terminan en la basura común por una simple razón: <strong style="color: var(--secondary)">La falta de incentivos directos.</strong>',
+                s1_p2: 'Existe la intención, pero no el hábito. La brecha entre conciencia y acción es nuestro campo de batalla.<br><strong style="color: #a3ff33;">PaperLoop</strong> parte de una idea sencilla: cuando el residuo tiene valor, el hábito cambia.',
+                s1_stat: "El papel es uno de los residuos más relevantes en entornos educativos",
+                s1_src: "Fuente: ASPAPEL (2012). “Recuperación de papel en universidades”.",
+                s2_t: "La <span>Voz</span> del Estudiante",
+                s2_stat_l: "Estudiantes encuestados",
+                s2_stat_p: "Murcia, Almería, Málaga y Extremadura.",
+                s2_list: [
+                    '<li><i class="fa-solid fa-circle-check"></i> Actitud pro-sostenible confirmada.</li>',
+                    '<li><i class="fa-solid fa-circle-xmark" style="color: #ff4d4d;"></i> Brecha teoría-práctica detectada.</li>',
+                    '<li><i class="fa-solid fa-bolt"></i> Mayor integración institucional demandada.</li>'
+                ],
+                s2_footer: "Albarracín Esparza, L., León Gómez, A., Gallardo Vázquez, D., Valls Martínez, M. D. C., & Soriano Román, R. Universidad y sostenibilidad: así lo ve el alumnado.",
+                s3_t: "Nuestra <span>Solución</span>",
+                s3_app: "Escanea · Recicla · Gana",
+                s3_h3: "Activamos valor donde hoy solo hay residuo.",
+                s3_p: "Es un <strong>ecosistema digital</strong> que conecta la generación de residuos con beneficios económicos locales.",
+                doa_h: ["Donate", "Optimize", "Acquire"],
+                doa_p: ["Depósito de papel en puntos inteligentes estratégicos.", "Gestión mediante operadores locales. Eficiencia logística.", "Eco-créditos canjeables en servicios universitarios."],
+                s5_t: "Impacto <span>Institucional</span>",
+                s5_list: [
+                    '<li><i class="fa-solid fa-check-double"></i> Cumplimiento ODS 12 y 13.</li>',
+                    '<li><i class="fa-solid fa-chart-line"></i> Datos reales de reciclaje.</li>',
+                    '<li><i class="fa-solid fa-piggy-bank"></i> Optimización de costes.</li>',
+                    '<li><i class="fa-solid fa-users"></i> Participación de la comunidad universitaria.</li>'
+                ],
+                s5_box_t: "Economía Circular",
+                s5_box_p: "El valor del residuo vuelve al estudiante y al comercio local, creando un ciclo de riqueza sostenible.",
+                s6_t: " Nuestra ventaja <span>competitiva</span>",
+                s6_table: [
+                    ['Sistemas Actuales', 'Basados en la ética (Participación baja)'],
+                    ['Puntos Limpios', 'Lejos del usuario (Fricción alta)'],
+                    ['PaperLoop', 'Basado en incentivos (Acción inmediata)']
+                ],
+                s7_p: "No reinventamos el reciclaje.<br>Lo hacemos relevante.",
+                s7_thanks: "GRACIAS POR SU ATENCIÓN"
+            },
+            EN: {
+                btn: "ES",
+                s0_st: "REDEFINING UNIVERSITY RECYCLING",
+                s0_b: "D.O.A. MODEL 2026",
+                s1_t: "The invisible <span>Problem</span>",
+                s1_p1: 'Universities generate large volumes of paper that end up in common trash for one simple reason: <strong style="color: var(--secondary)">Lack of direct incentives.</strong>',
+                s1_p2: 'The intention exists, but the habit does not. The gap between awareness and action is our battlefield.<br><strong style="color: #a3ff33;">PaperLoop</strong> starts from a simple idea: when waste has value, habit changes.',
+                s1_stat: "Paper is one of the most relevant waste types in educational environments",
+                s1_src: "Source: ASPAPEL (2012). “Paper recovery in universities”.",
+                s2_t: "The Student's <span>Voice</span>",
+                s2_stat_l: "Students surveyed",
+                s2_stat_p: "Murcia, Almeria, Malaga, and Extremadura.",
+                s2_list: [
+                    '<li><i class="fa-solid fa-circle-check"></i> Pro-sustainable attitude confirmed.</li>',
+                    '<li><i class="fa-solid fa-circle-xmark" style="color: #ff4d4d;"></i> Theory-practice gap detected.</li>',
+                    '<li><i class="fa-solid fa-bolt"></i> Greater institutional integration demanded.</li>'
+                ],
+                s2_footer: "Albarracín Esparza, L., León Gómez, A., Gallardo Vázquez, D., Valls Martínez, M. D. C., & Soriano Román, R. University and sustainability: student perspective.",
+                s3_t: "Our <span>Solution</span>",
+                s3_app: "Scan · Recycle · Earn",
+                s3_h3: "We activate value where there is only waste.",
+                s3_p: "It is a <strong>digital ecosystem</strong> that connects waste generation with local economic benefits.",
+                doa_h: ["Donate", "Optimize", "Acquire"],
+                doa_p: ["Paper deposit at strategic smart points.", "Management by local operators. Logistics efficiency.", "Eco-credits redeemable for university services."],
+                s5_t: "Institutional <span>Impact</span>",
+                s5_list: [
+                    '<li><i class="fa-solid fa-check-double"></i> SDG 12 and 13 compliance.</li>',
+                    '<li><i class="fa-solid fa-chart-line"></i> Real-time recycling data.</li>',
+                    '<li><i class="fa-solid fa-piggy-bank"></i> Cost optimization.</li>',
+                    '<li><i class="fa-solid fa-users"></i> University community engagement.</li>'
+                ],
+                s5_box_t: "Circular Economy",
+                s5_box_p: "Waste value returns to the student and local commerce, creating a sustainable wealth cycle.",
+                s6_t: "Our competitive <span>advantage</span>",
+                s6_table: [
+                    ['Current Systems', 'Ethics-based (Low participation)'],
+                    ['Clean Points', 'Far from user (High friction)'],
+                    ['PaperLoop', 'Incentive-based (Immediate action)']
+                ],
+                s7_p: "We don't reinvent recycling.<br>We make it relevant.",
+                s7_thanks: "THANK YOU FOR YOUR ATTENTION"
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ES' ? 'EN' : 'ES';
+            const t = translations[currentLang];
+            langBtn.innerText = t.btn;
+
+            // Diapositiva 0
+            document.getElementById('s0-st').innerText = t.s0_st;
+            document.getElementById('s0-b').innerText = t.s0_b;
+
+            // Diapositiva 1
+            document.getElementById('s1-t').innerHTML = t.s1_t;
+            document.getElementById('s1-p1').innerHTML = t.s1_p1;
+            document.getElementById('s1-p2').innerHTML = t.s1_p2;
+            document.getElementById('s1-stat').innerText = t.s1_stat;
+            document.getElementById('s1-src').innerText = t.s1_src;
+
+            // Diapositiva 2
+            document.getElementById('s2-t').innerHTML = t.s2_t;
+            document.getElementById('s2-stat-l').innerText = t.s2_stat_l;
+            document.getElementById('s2-stat-p').innerText = t.s2_stat_p;
+            document.getElementById('s2-list').innerHTML = t.s2_list.join('');
+            document.getElementById('s2-footer').innerText = t.s2_footer;
+
+            // Diapositiva 3
+            document.getElementById('s3-t').innerHTML = t.s3_t;
+            document.getElementById('s3-app').innerText = t.s3_app;
+            document.getElementById('s3-h3').innerText = t.s3_h3;
+            document.getElementById('s3-p').innerHTML = t.s3_p;
+
+            // Diapositiva 4 (DOA)
+            const dH = document.querySelectorAll('.doa-h');
+            const dP = document.querySelectorAll('.doa-p');
+            dH.forEach((el, i) => el.innerText = t.doa_h[i]);
+            dP.forEach((el, i) => el.innerText = t.doa_p[i]);
+
+            // Diapositiva 5
+            document.getElementById('s5-t').innerHTML = t.s5_t;
+            document.getElementById('s5-list').innerHTML = t.s5_list.join('');
+            document.getElementById('s5-box-t').innerText = t.s5_box_t;
+            document.getElementById('s5-box-p').innerText = t.s5_box_p;
+
+            // Diapositiva 6 (Tabla)
+            const rows = document.querySelectorAll('#s6-table tr');
+            rows.forEach((row, i) => {
+                row.cells[0].innerText = t.s6_table[i][0];
+                row.cells[1].innerText = t.s6_table[i][1];
+            });
+
+            // Diapositiva 7
+            document.getElementById('s6-t').innerHTML = t.s6_t;
+            document.getElementById('s7-p').innerHTML = t.s7_p;
+            document.getElementById('s7-thanks').innerText = t.s7_thanks;
+
+            currentSlide = 0;
+            updateSlide();
+        }
+
+        function updateSlide() {
+            slides.forEach((slide, index) => slide.classList.toggle('active', index === currentSlide));
+            progressBar.style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+            counter.innerText = `${currentSlide + 1} / ${totalSlides}`;
+            const activeSlide = slides[currentSlide];
+            counter.style.color = (activeSlide.classList.contains('cover') || activeSlide.id === 'slide-3') ? 'rgba(255, 255, 255, 0.5)' : 'rgba(15, 23, 42, 0.3)';
+        }
+
+        nextBtn.addEventListener('click', () => { currentSlide = (currentSlide + 1) % totalSlides; updateSlide(); });
+        prevBtn.addEventListener('click', () => { currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; updateSlide(); });
+        document.addEventListener('keydown', (e) => {
+            if (['ArrowRight', ' ', 'ArrowDown'].includes(e.key)) { currentSlide = (currentSlide + 1) % totalSlides; updateSlide(); }
+            else if (['ArrowLeft', 'ArrowUp'].includes(e.key)) { currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; updateSlide(); }
+        });
+
+        updateSlide();
+    </script>
+</body>
+</html>
