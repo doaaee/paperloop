@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>PaperLoop | Economía Circular Universitaria</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding-top: env(safe-area-inset-top);
+    }
+
+    .hero-pattern {
+      background-color: #ffffff;
+      background-image: radial-gradient(#14b8a6 0.5px, #ffffff 0.5px);
+      background-size: 20px 20px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .tab-active {
+      background-color: #5eead4 !important;
+      color: white !important;
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: #0d9488;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      border-radius: 1.5rem;
+      z-index: 10;
+    }
+    .group:hover .card-overlay {
+      opacity: 1;
+    }
+
+    .social-btn {
+      width: 48px;
+      height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      background: #ffffff;
+      border: 1px solid rgb(226 232 240);
+      color: rgb(71 85 105);
+      transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+    .social-btn:hover {
+      transform: scale(1.1);
+      color: #ffffff;
+    }
+    .social-linkedin:hover { background-color: #0077b5; border-color: #0077b5; }
+    .social-instagram:hover { background-color: #e4405f; border-color: #e4405f; }
+    .social-tiktok:hover { background-color: #000000; border-color: #000000; }
+
+    .scanner-container {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      background: #0f172a;
+      border-radius: 1.25rem;
+      overflow: hidden;
+    }
+    .scanner-line {
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background: #2dd4bf;
+      top: 0;
+      box-shadow: 0 0 15px #2dd4bf;
+      animation: scan 2.5s infinite ease-in-out;
+      z-index: 5;
+    }
+    @keyframes scan {
+      0%, 100% { top: 5%; }
+      50% { top: 90%; }
+    }
+    .phone-mockup {
+      width: 100%;
+      max-width: 340px;
+      margin: 0 auto;
+      aspect-ratio: 9 / 19;
+    }
+
+    @keyframes modalPop {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .animate-modal { animation: modalPop 0.3s ease-out; }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 antialiased">
+
+  <nav class="fixed w-full z-50 glass-nav border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+      <a href="#inicio" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+        <div class="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center text-white">
+          <i class="fas fa-leaf text-lg"></i>
+        </div>
+        <span class="text-2xl font-extrabold tracking-tighter text-slate-900">PaperLoop</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-10">
+        <a href="#inicio" data-key="nav-home" class="text-sm font-semibold text-slate-600 hover:text-teal-600 transition">Inicio</a>
+        <a href="#audiencia" data-key="nav-who" class="text-sm font-semibold text-slate-600 hover:text-teal-600 transition">Para quién</a>
+        <a href="#ods" data-key="nav-ods" class="text-sm font-semibold text-slate-600 hover:text-teal-600 transition">Objetivos</a>
+        <a href="#app" data-key="nav-demo" class="px-6 py-2.5 bg-teal-600 text-white rounded-full text-sm font-bold hover:bg-teal-700 transition shadow-lg shadow-teal-600/20">
+          Probar App
+        </a>
+        <button onclick="toggleLanguage()" class="flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg transition border border-slate-200">
+          <i class="fas fa-globe text-slate-500 text-xs"></i>
+          <span id="lang-label" class="text-xs font-bold text-slate-700">EN</span>
+        </button>
+      </div>
+
+      <button onclick="toggleLanguage()" class="md:hidden flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg transition border border-slate-200">
+        <i class="fas fa-globe text-slate-500 text-xs"></i>
+        <span class="text-xs font-bold text-slate-700" id="lang-label-mobile">EN</span>
+      </button>
+    </div>
+  </nav>
+
+  <section id="inicio" class="relative pt-40 pb-24 overflow-hidden hero-pattern">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 px-4 py-2 rounded-full mb-6">
+          <span class="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></span>
+          <span data-key="hero-tag" class="text-xs font-bold text-teal-700 uppercase tracking-widest">Iniciativa Estudiantil 2026</span>
+        </div>
+        <h1 class="text-6xl font-extrabold text-slate-900 leading-tight mb-8">
+          <span data-key="hero-title-1">Dale una vida al</span> <br />
+          <span data-key="hero-title-2" class="gradient-text">Papel del Campus</span>
+        </h1>
+        <p data-key="hero-desc" class="text-xl text-slate-600 leading-relaxed mb-10 max-w-lg">
+          Conectamos a estudiantes y empresas en una red circular donde el papel se convierte en impacto social y ambiental.
+        </p>
+<div class="flex flex-col sm:flex-row gap-4">
+          <a href="#audiencia" data-key="btn-more" class="px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold text-lg hover:bg-slate-800 transition text-center">Empezar ahora</a>
+          <a href="https://forms.gle/RB1wZq5NF2QFN9J88" target="_blank" data-key="btn-survey" class="px-8 py-4 bg-white text-teal-700 border border-teal-200 rounded-2xl font-bold text-lg hover:bg-teal-50 transition text-center">Encuesta</a>
+          
+          <a href="http://www.hoe.com" target="_blank" class="w-[60px] h-[60px] flex items-center justify-center bg-teal-50 text-teal-600 border border-teal-200 rounded-2xl hover:bg-teal-100 transition shadow-sm group"><i class="fas fa-seedling text-2xl group-hover:scale-110 transition-transform"></i></a>
+            
+          </button>
+        </div>
+      </div>
+
+      <div class="relative flex justify-center">
+        <div class="w-full max-w-md aspect-square bg-teal-100/50 rounded-[4rem] flex items-center justify-center">
+          <div class="w-4/5 h-4/5 bg-white rounded-3xl shadow-2xl flex flex-col p-8 border border-slate-100 relative group transition-all duration-500 overflow-hidden">
+            <div class="card-overlay">
+              <p data-key="card-hover-text" class="text-xl font-bold leading-snug">
+                Tu perfil PaperLoop registra cada hoja salvada en tu universidad y la convierte en recompensas.
+              </p>
+            </div>
+            <div class="flex items-center gap-4 mb-8">
+              <div class="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center text-white"><i class="fas fa-user-graduate"></i></div>
+              <div>
+                <div data-key="card-user" class="text-sm font-extrabold">Estudiante01</div>
+                <div data-key="card-uni" class="text-[10px] text-slate-400 uppercase tracking-wider leading-tight">Universidad de Almería</div>
+              </div>
+            </div>
+            <div class="p-4 bg-teal-50 rounded-2xl border border-teal-100 mb-6">
+              <div class="flex justify-between items-center mb-2">
+                <span data-key="card-co2" class="text-[10px] font-bold text-teal-600 uppercase tracking-tighter">Impacto CO2</span>
+                <span class="text-[10px] font-bold text-teal-600">-12kg</span>
+              </div>
+              <div class="w-full bg-teal-200/30 h-1.5 rounded-full"><div class="bg-teal-500 h-full w-3/4"></div></div>
+            </div>
+            <div class="mt-auto pt-6 border-t border-dashed border-slate-200 flex justify-between items-center">
+              <p data-key="card-rank" class="text-sm font-extrabold text-slate-800 italic">Ecomanager</p>
+              <i class="fas fa-qrcode text-xl text-slate-400"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="audiencia" class="py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 data-key="who-title" class="text-4xl font-extrabold mb-4">Para quién es</h2>
+      <p data-key="who-subtitle" class="text-slate-500 mb-12 text-lg">No necesitas cambiar tu rutina — simplemente deposita el papel donde ya estás.</p>
+
+      <div class="inline-flex flex-col sm:flex-row p-1.5 bg-slate-100 rounded-2xl mb-12 w-full sm:w-auto">
+        <button onclick="switchTab('students')" id="tab-students" data-key="tab-h-stu" class="px-6 py-3 rounded-xl text-sm font-bold transition tab-active">Estudiantes</button>
+        <button onclick="switchTab('unis')" id="tab-unis" data-key="tab-h-uni-btn" class="px-6 py-3 rounded-xl text-sm font-bold transition text-slate-500">Universidades</button>
+        <button onclick="switchTab('corps')" id="tab-corps" data-key="tab-h-corp-btn" class="px-6 py-3 rounded-xl text-sm font-bold transition text-slate-500">Empresas</button>
+      </div>
+
+      <div class="bg-slate-50 rounded-[2.5rem] p-10 text-left border border-slate-100 shadow-sm min-h-[300px]">
+        <div id="content-students" class="tab-content flex flex-col md:flex-row gap-10 items-start">
+          <div class="w-16 h-16 bg-teal-100 rounded-2xl flex items-center justify-center text-teal-600 text-2xl shrink-0"><i class="fas fa-graduation-cap"></i></div>
+          <div>
+            <h3 data-key="tab-h-stu" class="text-2xl font-extrabold mb-6">Estudiantes</h3>
+            <ul class="space-y-4">
+              <li class="flex items-center gap-3 text-slate-600 font-medium"><i class="fas fa-check text-teal-500"></i> <span data-key="tab-stu-1">Consigue puntos por tus apuntes viejos.</span></li>
+              <li class="flex items-center gap-3 text-slate-600 font-medium"><i class="fas fa-check text-teal-500"></i> <span data-key="tab-stu-2">Acceso a material escolar reciclado y barato.</span></li>
+              <li class="flex items-center gap-3 text-slate-600 font-medium"><i class="fas fa-check text-teal-500"></i> <span data-key="tab-stu-3">Participa en una economía circular real.</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="content-unis" class="tab-content hidden flex flex-col md:flex-row gap-10 items-start">
+          <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 text-2xl shrink-0"><i class="fas fa-university"></i></div>
+          <div>
+            <h3 data-key="tab-h-uni" class="text-2xl font-extrabold mb-6">Universidades & Escuelas</h3>
+            <ul class="space-y-4">
+              <li class="flex items-center gap-3 text-slate-600 font-medium"><i class="fas fa-check text-teal-500"></i> <span data-key="tab-uni-1">Acción de sostenibilidad fácil de implementar.</span></li>
+              <li class="flex items-center gap-3 text-slate-600 font-medium"><i class="fas fa-check text-teal-500"></i> <span data-key="tab-uni-2">Visibilidad e impacto medible (datos reales).</span></li>
+              <li class="flex items-center gap-3 text-slate-600 font-medium"><i class="fas fa-check text-teal-500"></i> <span data-key="tab-uni-3">Involucra a los alumnos en un proyecto tangible.</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="content-corps" class="tab-content hidden flex flex-col md:flex-row gap-10 items-start">
+          <div class="w-16 h-16 bg-slate-200 rounded-2xl flex items-center justify-center text-slate-700 text-2xl shrink-0"><i class="fas fa-building"></i></div>
+          <div>
+            <h3 data-key="tab-h-corp" class="text-2xl font-extrabold mb-6">Empresas & Oficinas</h3>
+            <ul class="space-y-4">
+              <li class="flex items-center gap-3 text-slate-600 font-medium"><i class="fas fa-check text-teal-500"></i> <span data-key="tab-corp-1">Certificado de impacto CO₂ para tu memoria ESG.</span></li>
+              <li class="flex items-center gap-3 text-slate-600 font-medium"><i class="fas fa-check text-teal-500"></i> <span data-key="tab-corp-2">Mejora de reputación corporativa local.</span></li>
+              <li class="flex items-center gap-3 text-slate-600 font-medium"><i class="fas fa-check text-teal-500"></i> <span data-key="tab-corp-3">Fomenta el engagement de los empleados.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ods" class="py-24 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-extrabold mb-12" data-key="nav-ods">Objetivos</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-8 bg-white rounded-3xl border border-slate-100 shadow-sm">
+          <div class="w-14 h-14 bg-red-600 rounded-xl flex items-center justify-center text-white text-xl mb-6 mx-auto shadow-lg shadow-red-600/20">
+            <span class="font-black">4</span>
+          </div>
+          <h3 data-key="ods-h1" class="text-xl font-bold mb-4">Educación de Calidad</h3>
+          <p data-key="ods-p1" class="text-sm text-slate-600 leading-relaxed">Proveer material escolar reciclado facilita el acceso a herramientas de estudio para todos los alumnos.</p>
+        </div>
+
+        <div class="p-8 bg-white rounded-3xl border border-slate-100 shadow-sm">
+          <div class="w-14 h-14 bg-orange-500 rounded-xl flex items-center justify-center text-white text-xl mb-6 mx-auto shadow-lg shadow-orange-500/20">
+            <span class="font-black">11</span>
+          </div>
+          <h3 data-key="ods-h2" class="text-xl font-bold mb-4">Comunidades Sostenibles</h3>
+          <p data-key="ods-p2" class="text-sm text-slate-600 leading-relaxed">Transformamos el campus en un ecosistema circular que reduce residuos de manera colaborativa.</p>
+        </div>
+
+        <div class="p-8 bg-white rounded-3xl border border-slate-100 shadow-sm">
+          <div class="w-14 h-14 bg-emerald-700 rounded-xl flex items-center justify-center text-white text-xl mb-6 mx-auto shadow-lg shadow-emerald-700/20">
+            <span class="font-black">13</span>
+          </div>
+          <h3 data-key="ods-h3" class="text-xl font-bold mb-4">Acción por el Clima</h3>
+          <p data-key="ods-p3" class="text-sm text-slate-600 leading-relaxed">Reducimos la huella de carbono al evitar la producción de papel virgen y optimizar el transporte.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="app" class="pt-32 pb-20 bg-slate-900 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        <div class="w-full lg:w-1/2 text-center lg:text-left">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">
+            <span data-key="app-title-1">Usa la</span> <br />
+            <span data-key="app-title-2" class="text-teal-400">App de Recompensas</span>
+          </h2>
+          <p id="instr-text" class="text-slate-300 text-lg mb-8 max-w-md mx-auto lg:mx-0">
+            Encuentra el punto PaperLoop más cercano y <span class="text-teal-400 font-bold">escanea el código QR</span> del contenedor al depositar tu papel.
+          </p>
+          <div class="inline-flex items-center gap-3 px-4 py-2 bg-white/5 rounded-full border border-white/10">
+            <i class="fas fa-location-dot text-teal-500"></i>
+            <span class="text-xs text-slate-400 font-medium">Validación por geolocalización activa.</span>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-1/2 flex justify-center items-center">
+          <div class="phone-mockup bg-slate-800 rounded-[3rem] p-3 border-[6px] border-slate-700 shadow-2xl">
+            <div class="bg-white rounded-[2.2rem] overflow-hidden flex flex-col h-full min-h-[540px]">
+              <div class="p-5 border-b border-slate-50 flex justify-between items-center">
+                <i class="fas fa-bars text-slate-300"></i>
+                <span class="text-[10px] font-black tracking-[0.2em] text-slate-400 uppercase">PaperLoop App</span>
+                <i class="fas fa-bell text-slate-300"></i>
+              </div>
+              <div class="px-6 py-4">
+                <div class="bg-slate-900 rounded-2xl p-4 text-white flex justify-between items-center shadow-lg">
+                  <div>
+                    <p data-key="demo-pts-label" class="text-[9px] text-teal-400 font-bold uppercase tracking-wider">Mis Puntos</p>
+                    <h4 id="pts" class="text-3xl font-black">0</h4>
+                  </div>
+                  <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
+                    <i class="fas fa-star text-teal-400"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="px-6 py-2 flex-grow">
+                <p class="text-[9px] font-bold text-slate-400 uppercase mb-3 tracking-widest text-center">Escáner de Depósito</p>
+                <div class="scanner-container">
+                  <div class="scanner-line"></div>
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <i class="fas fa-qrcode text-6xl text-teal-500/20"></i>
+                  </div>
+                  <div id="success-anim" class="absolute inset-0 bg-teal-600/90 hidden flex-col items-center justify-center text-white z-20">
+                    <i class="fas fa-check-circle text-5xl mb-2 animate-bounce"></i>
+                    <span class="font-bold text-sm">+15 PUNTOS</span>
+                  </div>
+                </div>
+              </div>
+              <div class="p-6 pt-2">
+                <button onclick="startScan()" id="scan-btn" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-4 rounded-2xl shadow-xl transition-all active:scale-95 flex items-center justify-center gap-3">
+                  <i class="fas fa-camera"></i>
+                  <span id="btn-text">Escanear QR</span>
+                </button>
+                <div class="mt-6">
+                  <div class="flex justify-between items-center mb-3">
+                    <span data-key="demo-redeem" class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Canjes Populares</span>
+                    <button onclick="openModal()" class="text-[9px] font-bold text-teal-600 uppercase tracking-widest hover:underline">Ver todos</button>
+                  </div>
+                  <div class="bg-slate-50 border border-slate-100 rounded-xl p-3 flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                      <i class="fas fa-coffee text-teal-600"></i>
+                      <span class="text-xs font-bold">Café Campus</span>
+                    </div>
+                    <span class="text-[10px] font-bold text-slate-400">45 PTS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-slate-50 border-t border-slate-100 pt-20 pb-16">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <div class="mb-12">
+        <h3 data-key="social-title" class="text-sm font-bold text-slate-400 uppercase tracking-[0.2em] mb-8">Síguenos en redes</h3>
+        <div class="flex justify-center gap-6">
+          <a href="#" class="social-btn social-linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-xl"></i></a>
+          <a href="#" class="social-btn social-instagram" aria-label="Instagram"><i class="fab fa-instagram text-xl"></i></a>
+          <a href="#" class="social-btn social-tiktok" aria-label="TikTok"><i class="fab fa-tiktok text-xl"></i></a>
+        </div>
+      </div>
+      <div class="flex justify-center items-center gap-2 mb-6">
+        <div class="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center text-white">
+          <i class="fas fa-leaf text-sm"></i>
+        </div>
+        <span class="text-xl font-extrabold tracking-tighter">PaperLoop</span>
+      </div>
+      <p id="footer-copy" class="text-slate-400 text-xs font-bold uppercase tracking-widest">© 2026 PaperLoop Project • Hecho con ♻️ en Almería</p>
+    </div>
+  </footer>
+
+  <div id="modal-canjes" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+    <div onclick="closeModal()" class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
+    <div class="relative bg-white w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl overflow-hidden animate-modal">
+      <div class="flex justify-between items-center mb-8">
+        <h3 class="text-xl font-black text-slate-400 tracking-widest uppercase">CANJES</h3>
+        <button onclick="closeModal()" class="text-slate-300 hover:text-slate-600 transition-colors" aria-label="Cerrar modal">
+          <i class="fas fa-times-circle text-2xl"></i>
+        </button>
+      </div>
+      <div class="space-y-4">
+        <div class="flex justify-between items-center p-5 bg-slate-50 rounded-3xl border border-slate-100">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-white rounded-2xl shadow-sm flex items-center justify-center text-teal-600">
+              <i class="fas fa-coffee text-xl"></i>
+            </div>
+            <span class="font-black text-slate-900 text-xl tracking-tight">Café</span>
+          </div>
+          <span class="font-bold text-slate-400">45 PTS</span>
+        </div>
+        <div class="flex justify-between items-center p-5 bg-slate-50 rounded-3xl border border-slate-100">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-white rounded-2xl shadow-sm flex items-center justify-center text-teal-600">
+              <i class="fas fa-print text-xl"></i>
+            </div>
+            <span class="font-black text-slate-900 text-xl tracking-tight">Impresión (-15%)</span>
+          </div>
+          <span class="font-bold text-slate-400">80 PTS</span>
+        </div>
+      </div>
+      <button onclick="closeModal()" class="w-full mt-8 py-5 bg-slate-900 text-white font-black text-sm uppercase tracking-widest rounded-3xl hover:bg-slate-800 transition shadow-xl">
+        Cerrar
+      </button>
+    </div>
+  </div>
+
+  <script>
+    let userPoints = 0;
+    let currentLang = 'es';
+    let isScanning = false;
+
+    const translations = {
+      es: {
+        "nav-home": "Inicio", "nav-who": "Para quién", "nav-ods": "Objetivos", "nav-demo": "Probar App",
+        "hero-tag": "Iniciativa Estudiantil 2026", "hero-title-1": "Dale una vida al", "hero-title-2": "Papel del Campus",
+        "hero-desc": "Conectamos a estudiantes y empresas en una red circular donde el papel se convierte en impacto social y ambiental.",
+        "btn-more": "Empezar ahora", "btn-survey": "Encuesta",
+        "card-hover-text": "Tu perfil PaperLoop registra cada hoja salvada en tu universidad y la convierte en recompensas.",
+        "card-user": "Estudiante01", "card-uni": "Universidad de Almería", "card-co2": "Impacto CO2", "card-rank": "Ecomanager",
+        "who-title": "Para quién es", "who-subtitle": "No necesitas cambiar tu rutina — simplemente deposita el papel donde ya estás.",
+        "tab-h-stu": "Estudiantes", "tab-h-uni-btn": "Universidades", "tab-h-corp-btn": "Empresas",
+        "tab-h-uni": "Universidades & Escuelas", "tab-h-corp": "Empresas & Oficinas",
+        "tab-stu-1": "Consigue puntos por tus apuntes viejos.", "tab-stu-2": "Acceso a material escolar reciclado y barato.", "tab-stu-3": "Participa en una economía circular real.",
+        "tab-uni-1": "Acción de sostenibilidad fácil de implementar.", "tab-uni-2": "Visibilidad e impacto medible (datos reales).", "tab-uni-3": "Involucra a los alumnos en un proyecto tangible.",
+        "tab-corp-1": "Certificado de impacto CO₂ para tu memoria ESG.", "tab-corp-2": "Mejora de reputación corporativa local.", "tab-corp-3": "Fomenta el engagement de los empleados.",
+        "ods-h1": "Educación de Calidad", "ods-h2": "Comunidades Sostenibles", "ods-h3": "Acción por el Clima",
+        "app-title-1": "Usa la", "app-title-2": "App de Recompensas",
+        "demo-pts-label": "Mis Puntos", "demo-redeem": "Canjes Populares", "social-title": "Síguenos en redes"
+      },
+      en: {
+        "nav-home": "Home", "nav-who": "Who it's for", "nav-ods": "Objectives", "nav-demo": "Try App",
+        "hero-tag": "Student Initiative 2026", "hero-title-1": "Give a life to", "hero-title-2": "Campus Paper",
+        "hero-desc": "We connect students and companies in a circular network where paper becomes social and environmental impact.",
+        "btn-more": "Start now", "btn-survey": "Survey",
+        "card-hover-text": "Your PaperLoop profile tracks every sheet saved at your university and turns it into rewards.",
+        "card-user": "Student01", "card-uni": "University of Almería", "card-co2": "CO2 Impact", "card-rank": "Ecomanager",
+        "who-title": "Who it's for", "who-subtitle": "You don't need to change your routine — just drop the paper where you already are.",
+        "tab-h-stu": "Students", "tab-h-uni-btn": "Universities", "tab-h-corp-btn": "Companies",
+        "tab-h-uni": "Universities & Schools", "tab-h-corp": "Companies & Offices",
+        "tab-stu-1": "Get points for your old notes.", "tab-stu-2": "Access to cheap recycled school supplies.", "tab-stu-3": "Participate in a real circular economy.",
+        "tab-uni-1": "Easy-to-implement sustainability action.", "tab-uni-2": "Visibility and measurable impact (real data).", "tab-uni-3": "Engage students in a tangible project.",
+        "tab-corp-1": "CO2 impact certificate for your ESG report.", "tab-corp-2": "Improve local corporate reputation.", "tab-corp-3": "Encourage employee engagement.",
+        "ods-h1": "Quality Education", "ods-h2": "Sustainable Communities", "ods-h3": "Climate Action",
+        "app-title-1": "Use the", "app-title-2": "Rewards App",
+        "demo-pts-label": "My Points", "demo-redeem": "Popular Rewards", "social-title": "Follow us"
+      }
+    };
+
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('#audiencia button').forEach(b => {
+        b.classList.remove('tab-active');
+        b.classList.add('text-slate-500');
+      });
+      document.getElementById('content-' + tab).classList.remove('hidden');
+      document.getElementById('tab-' + tab).classList.add('tab-active');
+      document.getElementById('tab-' + tab).classList.remove('text-slate-500');
+    }
+
+    function openModal() {
+      const modal = document.getElementById('modal-canjes');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal-canjes');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = 'auto';
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'es' ? 'en' : 'es';
+      document.getElementById('lang-label').textContent = currentLang === 'es' ? 'EN' : 'ES';
+      const mobile = document.getElementById('lang-label-mobile');
+      if (mobile) mobile.textContent = currentLang === 'es' ? 'EN' : 'ES';
+
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (translations[currentLang][key]) el.textContent = translations[currentLang][key];
+      });
+
+      const instr = document.getElementById('instr-text');
+      const copy = document.getElementById('footer-copy');
+      const btnText = document.getElementById('btn-text');
+
+      if (currentLang === 'es') {
+        instr.innerHTML = 'Encuentra el punto PaperLoop más cercano y <span class="text-teal-400 font-bold">escanea el código QR</span> del contenedor al depositar tu papel.';
+        copy.innerHTML = '© 2026 PaperLoop Project • Hecho con ♻️ en Almería';
+        btnText.textContent = "Escanear QR";
+      } else {
+        instr.innerHTML = 'Find the nearest PaperLoop point and <span class="text-teal-400 font-bold">scan the QR code</span> on the bin when you drop your paper.';
+        copy.innerHTML = '© 2026 PaperLoop Project • Made with ♻️ in Almería';
+        btnText.textContent = "Scan QR";
+      }
+    }
+
+    function startScan() {
+      if (isScanning) return;
+      isScanning = true;
+      const btn = document.getElementById('scan-btn');
+      const successAnim = document.getElementById('success-anim');
+      const btnText = document.getElementById('btn-text');
+
+      btn.classList.add('opacity-50', 'cursor-not-allowed');
+      btnText.textContent = currentLang === 'es' ? 'Escaneando...' : 'Scanning...';
+
+      setTimeout(() => {
+        userPoints += 15;
+        document.getElementById('pts').textContent = userPoints;
+        successAnim.classList.remove('hidden');
+        successAnim.classList.add('flex');
+
+        setTimeout(() => {
+          successAnim.classList.add('hidden');
+          successAnim.classList.remove('flex');
+          isScanning = false;
+          btn.classList.remove('opacity-50', 'cursor-not-allowed');
+          btnText.textContent = currentLang === 'es' ? 'Escanear QR' : 'Scan QR';
+        }, 2000);
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
