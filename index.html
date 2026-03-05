@@ -336,28 +336,24 @@
                 </div>
               </div>
               <div class="p-6 pt-2">
-                <button onclick="startScan()" id="scan-btn" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-4 rounded-2xl shadow-xl transition-all active:scale-95 flex items-center justify-center gap-3">
-                  <i class="fas fa-camera"></i>
-                  <span id="btn-text">Escanear QR</span>
-                </button>
-                <div class="mt-6">
-                  <div class="flex justify-between items-center mb-3">
-                    <span data-key="demo-redeem" class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Canjes Populares</span>
-                    <button onclick="openModal()" class="text-[9px] font-bold text-teal-600 uppercase tracking-widest hover:underline">Ver todos</button>
-                  </div>
-                  <div class="bg-slate-50 border border-slate-100 rounded-xl p-3 flex justify-between items-center">
-                    <div class="flex items-center gap-3">
-                      <i class="fas fa-coffee text-teal-600"></i>
-                      <span class="text-xs font-bold">Café Campus</span>
-                    </div>
-                    <span class="text-[10px] font-bold text-slate-400">45 PTS</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <a href="https://hoe.com" target="_blank" id="scan-btn" class="w-full bg-[#469085] hover:bg-[#3a786f] text-white font-bold py-4 rounded-2xl shadow-lg transition-all active:scale-95 flex items-center justify-center gap-3">
+  <i class="fas fa-external-link-alt"></i>
+  <span id="btn-text">Probar App</span>
+</a>
+
+<div class="mt-6">
+  <div class="flex justify-between items-center mb-3">
+    <span data-key="demo-redeem" class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Canjes Populares</span>
+    <button onclick="openModal()" class="text-[9px] font-bold text-[#469085] uppercase tracking-widest hover:underline">Ver todos</button>
+  </div>
+  <div class="bg-slate-50 border border-slate-100 rounded-xl p-3 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <i class="fas fa-coffee text-[#469085]"></i>
+      <span class="text-xs font-bold">Café Campus</span>
+    </div>
+    <span class="text-[10px] font-bold text-slate-400">45 PTS</span>
+  </div>
+</div>
     </div>
   </section>
 
@@ -493,32 +489,31 @@
       document.body.style.overflow = 'auto';
     }
 
-    function toggleLanguage() {
-      currentLang = currentLang === 'es' ? 'en' : 'es';
-      document.getElementById('lang-label').textContent = currentLang === 'es' ? 'EN' : 'ES';
-      const mobile = document.getElementById('lang-label-mobile');
-      if (mobile) mobile.textContent = currentLang === 'es' ? 'EN' : 'ES';
+  function toggleLanguage() {
+  currentLang = currentLang === 'es' ? 'en' : 'es';
+  document.getElementById('lang-label').textContent = currentLang === 'es' ? 'EN' : 'ES';
+  const mobile = document.getElementById('lang-label-mobile');
+  if (mobile) mobile.textContent = currentLang === 'es' ? 'EN' : 'ES';
 
-      document.querySelectorAll('[data-key]').forEach(el => {
-        const key = el.getAttribute('data-key');
-        if (translations[currentLang][key]) el.textContent = translations[currentLang][key];
-      });
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const key = el.getAttribute('data-key');
+    if (translations[currentLang][key]) el.textContent = translations[currentLang][key];
+  });
 
-      const instr = document.getElementById('instr-text');
-      const copy = document.getElementById('footer-copy');
-      const btnText = document.getElementById('btn-text');
+  const instr = document.getElementById('instr-text');
+  const copy = document.getElementById('footer-copy');
+  const btnText = document.getElementById('btn-text');
 
-      if (currentLang === 'es') {
-        instr.innerHTML = 'Encuentra el punto GreenLoop más cercano y <span class="text-teal-400 font-bold">escanea el código QR</span> del contenedor al depositar tu papel.';
-        copy.innerHTML = '© 2026 GreenLoop Project • Hecho con ♻️ en Almería';
-        btnText.textContent = "Escanear QR";
-      } else {
-        instr.innerHTML = 'Find the nearest GreenLoop point and <span class="text-teal-400 font-bold">scan the QR code</span> on the bin when you drop your paper.';
-        copy.innerHTML = '© 2026 GreenLoop Project • Made with ♻️ in Almería';
-        btnText.textContent = "Scan QR";
-      }
-    }
-
+  if (currentLang === 'es') {
+    instr.innerHTML = 'Encuentra el punto GreenLoop más cercano y <span class="text-teal-400 font-bold">escanea el código QR</span> del contenedor al depositar tu papel.';
+    copy.innerHTML = '© 2026 GreenLoop Project • Hecho con ♻️ en Almería';
+    btnText.textContent = "Probar App"; // Cambiado aquí
+  } else {
+    instr.innerHTML = 'Find the nearest GreenLoop point and <span class="text-teal-400 font-bold">scan the QR code</span> on the bin when you drop your paper.';
+    copy.innerHTML = '© 2026 GreenLoop Project • Made with ♻️ in Almería';
+    btnText.textContent = "Try App"; // Cambiado aquí
+  }
+}
     function startScan() {
       if (isScanning) return;
       isScanning = true;
