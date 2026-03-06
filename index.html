@@ -17,6 +17,8 @@
     .module-card { transition: all 0.3s ease; border: 1px solid #f1f5f9; }
     .module-card:hover { transform: translateY(-5px); border-color: #14b8a6; }
     .phone-mockup { width: 100%; max-width: 320px; aspect-ratio: 9 / 19; }
+    .social-btn { @apply w-12 h-12 flex items-center justify-center rounded-2xl border border-slate-200 text-slate-400 transition-all duration-300; }
+    .social-linkedin:hover { background-color: #0077b5; border-color: #0077b5; color: white; }
   </style>
 </head>
 
@@ -138,11 +140,12 @@
   <section id="modulos" class="py-24 bg-slate-50">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-extrabold mb-4" data-key="pill-title">Los tres pilares de GreenLoop</h2>
+        <h2 class="text-4xl font-extrabold mb-4" data-key="pill-title">Los cuatro pilares de GreenLoop</h2>
         <p class="text-slate-500 max-w-2xl mx-auto" data-key="pill-subtitle">Nuestra plataforma digital integra todo lo que necesitas para convertirte en un motor de cambio universitario.</p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        
         <div class="module-card p-8 bg-white rounded-[2rem] shadow-sm">
           <div class="w-14 h-14 bg-teal-100 text-teal-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
             <i class="fas fa-id-card"></i>
@@ -174,97 +177,107 @@
             <i class="fas fa-map-marked-alt"></i>
           </div>
           <h3 class="text-xl font-extrabold mb-4" data-key="mod-h3">Mapa Sostenible</h3>
-          <p class="text-slate-600 text-sm leading-relaxed mb-6" data-key="mod-p3">Descubre comercios locales sostenibles y opciones de consumo consciente en tu entorno.</p>
+          <p class="text-slate-600 text-sm leading-relaxed mb-6" data-key="mod-p3">Descubre comercios locales sostenibles y opciones de consumo consciente en tu entorno universitario.</p>
           <ul class="space-y-3 text-xs font-bold text-slate-500 uppercase">
-            <li data-key="check-7"><i class="fas fa-check text-orange-500 mr-2"></i> Comercios sostenibles cercanos</li>
-            <li data-key="check-8"><i class="fas fa-check text-orange-500 mr-2"></i> Filtros por tipo de consumo</li>
-            <li data-key="check-9"><i class="fas fa-check text-orange-500 mr-2"></i> Red local eco-responsable</li>
+            <li data-key="check-7"><i class="fas fa-check text-orange-500 mr-2"></i> Comercios eco-cercanos</li>
+            <li data-key="check-8"><i class="fas fa-check text-orange-500 mr-2"></i> Filtros de consumo eco</li>
+            <li data-key="check-9"><i class="fas fa-check text-orange-500 mr-2"></i> Red de impacto local</li>
           </ul>
         </div>
+
+        <div class="module-card p-8 bg-white rounded-[2rem] shadow-sm">
+          <div class="w-14 h-14 bg-lime-100 text-lime-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <h3 class="text-xl font-extrabold mb-4" data-key="mod-h4">Tips Sostenibles</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-6" data-key="mod-p4">Pequeñas ideas, gran impacto. Aprende hábitos diarios con datos reales sobre el ahorro de CO2 y recursos que generas.</p>
+          <ul class="space-y-3 text-xs font-bold text-slate-500 uppercase">
+            <li data-key="check-10"><i class="fas fa-check text-lime-500 mr-2"></i> Tips sostenibles por categoría</li>
+            <li data-key="check-11"><i class="fas fa-check text-lime-500 mr-2"></i> Ideas prácticas para el día a día</li>
+            <li data-key="check-12"><i class="fas fa-check text-lime-500 mr-2"></i> Pequeños cambios con gran impacto</li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </section>
 
   <section id="app" class="py-24 bg-slate-900 overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
-        <div class="order-2 lg:order-1 flex justify-center">
-            <div class="phone-mockup bg-slate-800 rounded-[3rem] p-3 border-[6px] border-slate-700 shadow-2xl relative">
-                <div class="bg-white rounded-[2.2rem] h-full overflow-hidden flex flex-col">
-                    <div class="p-6 bg-slate-50 border-b flex justify-between items-center">
-                        <i class="fas fa-bars text-slate-400"></i>
-                        <span class="text-[10px] font-black tracking-widest text-slate-400">GREENLOOP</span>
-                        <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center text-[10px] text-white font-bold">D</div>
-                    </div>
-                    <div class="p-6 flex-grow overflow-y-auto">
-                        <div class="bg-slate-900 rounded-2xl p-4 text-white mb-6">
-                            <p class="text-[9px] text-teal-400 font-bold uppercase" data-key="app-pts-label">Mis Puntos Acumulados</p>
-                            <h4 class="text-3xl font-black">1.250</h4>
-                        </div>
-                        <p class="text-[10px] font-bold text-slate-400 uppercase mb-4 tracking-wider" data-key="app-next-label">Próxima Actividad</p>
-                        <div class="bg-white border rounded-2xl p-4 flex gap-4 items-center mb-4">
-                            <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600">
-                                <i class="fas fa-seedling"></i>
-                            </div>
-                            <div class="flex-grow">
-                                <p class="text-xs font-extrabold text-slate-800" data-key="app-event-name">Taller de Compostaje</p>
-                                <p class="text-[9px] text-slate-400" data-key="app-event-time">Mañana • 10:00 AM</p>
-                            </div>
-                        </div>
-                        <a href="https://greenlop.lovable.app" target="_blank" class="w-full bg-teal-600 text-white py-4 rounded-xl font-bold text-sm shadow-lg shadow-teal-200 block text-center" data-key="nav-demo">
-                            Probar App
-                        </a>
-                    </div>
-                </div>
-                <div class="absolute -right-12 top-1/2 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 animate-bounce">
-                    <i class="fas fa-plus text-teal-500 mr-2"></i><span class="font-black text-sm">50 XP</span>
-                </div>
+      <div class="order-2 lg:order-1 flex justify-center">
+        <div class="phone-mockup bg-slate-800 rounded-[3rem] p-3 border-[6px] border-slate-700 shadow-2xl relative">
+          <div class="bg-white rounded-[2.2rem] h-full overflow-hidden flex flex-col">
+            <div class="p-6 bg-slate-50 border-b flex justify-between items-center">
+              <i class="fas fa-bars text-slate-400"></i>
+              <span class="text-[10px] font-black tracking-widest text-slate-400">GREENLOOP</span>
+              <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center text-[10px] text-white font-bold">D</div>
             </div>
-        </div>
-        <div class="order-1 lg:order-2 text-white">
-            <h2 class="text-4xl font-extrabold mb-6" data-key="app-title">Transformando la vida en el campus</h2>
-            <p class="text-slate-400 text-lg mb-8 leading-relaxed" data-key="app-desc">Nuestra app no es solo una herramienta, es un incentivo constante para que la comunidad universitaria elija el camino sostenible de forma divertida y gratificante.</p>
-            <div class="space-y-6">
-                <div class="flex gap-4">
-                    <div class="w-12 h-12 rounded-full bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20">
-                        <i class="fas fa-bolt text-teal-500"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-1" data-key="feat-1-h">Instantaneidad</h4>
-                        <p class="text-slate-400 text-sm" data-key="feat-1-p">Escanea y recibe puntos al momento. Sin esperas.</p>
-                    </div>
+            <div class="p-6 flex-grow overflow-y-auto">
+              <div class="bg-slate-900 rounded-2xl p-4 text-white mb-6">
+                <p class="text-[9px] text-teal-400 font-bold uppercase" data-key="app-pts-label">Mis Puntos Acumulados</p>
+                <h4 class="text-3xl font-black">1.250</h4>
+              </div>
+              <p class="text-[10px] font-bold text-slate-400 uppercase mb-4 tracking-wider" data-key="app-next-label">Próxima Actividad</p>
+              <div class="bg-white border rounded-2xl p-4 flex gap-4 items-center mb-4">
+                <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600">
+                  <i class="fas fa-seedling"></i>
                 </div>
-                <div class="flex gap-4">
-                    <div class="w-12 h-12 rounded-full bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20">
-                        <i class="fas fa-users text-teal-500"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-1" data-key="feat-2-h">Comunidad Social</h4>
-                        <p class="text-slate-400 text-sm" data-key="feat-2-p">Compara tu impacto con el de otros centros de la universidad.</p>
-                    </div>
+                <div class="flex-grow">
+                  <p class="text-xs font-extrabold text-slate-800" data-key="app-event-name">Taller de Compostaje</p>
+                  <p class="text-[9px] text-slate-400" data-key="app-event-time">Mañana • 10:00 AM</p>
                 </div>
+              </div>
+              <a href="https://greenlop.lovable.app" target="_blank" class="w-full bg-teal-600 text-white py-4 rounded-xl font-bold text-sm shadow-lg shadow-teal-200 block text-center" data-key="nav-demo">
+                Probar App
+              </a>
             </div>
+          </div>
+          <div class="absolute -right-12 top-1/2 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 animate-bounce">
+            <i class="fas fa-plus text-teal-500 mr-2"></i><span class="font-black text-sm">50 XP</span>
+          </div>
         </div>
+      </div>
+      <div class="order-1 lg:order-2 text-white">
+        <h2 class="text-4xl font-extrabold mb-6" data-key="app-title">Transformando la vida en el campus</h2>
+        <p class="text-slate-400 text-lg mb-8 leading-relaxed" data-key="app-desc">Nuestra app no es solo una herramienta, es un incentivo constante para que la comunidad universitaria elija el camino sostenible de forma divertida y gratificante.</p>
+        <div class="space-y-6">
+          <div class="flex gap-4">
+            <div class="w-12 h-12 rounded-full bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20">
+              <i class="fas fa-bolt text-teal-500"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg mb-1" data-key="feat-1-h">Instantaneidad</h4>
+              <p class="text-slate-400 text-sm" data-key="feat-1-p">Escanea y recibe puntos al momento. Sin esperas.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-12 h-12 rounded-full bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20">
+              <i class="fas fa-users text-teal-500"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg mb-1" data-key="feat-2-h">Comunidad Social</h4>
+              <p class="text-slate-400 text-sm" data-key="feat-2-p">Compara tu impacto con el de otros centros de la universidad.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-<footer class="bg-slate-50 border-t border-slate-100 pt-20 pb-16">
+  <footer class="bg-slate-50 border-t border-slate-100 pt-20 pb-16">
     <div class="max-w-7xl mx-auto px-6 text-center">
       <div class="mb-12">
         <h3 data-key="social-title" class="text-sm font-bold text-slate-400 uppercase tracking-[0.2em] mb-8">Síguenos en redes</h3>
         <div class="flex justify-center items-center gap-6">
-          
-          <a href="https://www.linkedin.com/in/doaae" target="_blank" class="social-btn social-linkedin" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/doaae" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-2xl border border-slate-200 text-slate-400 transition-all duration-300 hover:bg-[#0077b5] hover:border-[#0077b5] hover:text-white" aria-label="LinkedIn">
             <i class="fab fa-linkedin-in text-xl"></i>
           </a>
-          
-          <a href="https://www.youtube.com" target="_blank" class="social-btn hover:bg-[#FF0000] hover:border-[#FF0000] hover:text-white" aria-label="YouTube">
+          <a href="https://www.youtube.com" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-2xl border border-slate-200 text-slate-400 transition-all duration-300 hover:bg-[#FF0000] hover:border-[#FF0000] hover:text-white" aria-label="YouTube">
             <i class="fab fa-youtube text-xl"></i>
           </a>
-
-          <a href="https://feriadelasideas.es/es/ficha_proyecto.cgi?item=660916" target="_blank" class="social-btn overflow-hidden hover:border-teal-500 hover:bg-teal-50" aria-label="Feria de las Ideas">
+          <a href="https://feriadelasideas.es/es/ficha_proyecto.cgi?item=660916" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-2xl border border-slate-200 text-slate-400 transition-all duration-300 overflow-hidden hover:border-teal-500 hover:bg-teal-50" aria-label="Feria de las Ideas">
             <img src="https://feriadelasideas.es/es/gestion-emprendedores/assets/images/logo-icon.png" class="w-7 h-7 object-contain" alt="Feria de las Ideas Logo">
           </a>
-
         </div>
       </div>
       <div class="flex justify-center items-center gap-2 mb-6">
@@ -290,18 +303,21 @@
         "ods-p1": "Fomentamos el aprendizaje activo mediante talleres y formación ambiental práctica.",
         "ods-p2": "Creamos un ecosistema donde cada acción ayuda a que la universidad sea más verde.",
         "ods-p3": "Reducimos la huella de carbono digital y física mediante hábitos de consumo responsable.",
-        "pill-title": "Los tres pilares de GreenLoop", "pill-subtitle": "Nuestra plataforma digital integra todo lo que necesitas para convertirte en un motor de cambio universitario.",
-        "mod-h1": "Carné de Sostenibilidad", "mod-h2": "Agenda Activa", "mod-h3": "Mapa Sostenible",
+        "pill-title": "Los cuatro pilares de GreenLoop", "pill-subtitle": "Nuestra plataforma digital integra todo lo que necesitas para convertirte en un motor de cambio universitario.",
+        "mod-h1": "Carné de Sostenibilidad", "mod-h2": "Agenda Activa", "mod-h3": "Mapa Sostenible", "mod-h4": "Tips Sostenibles",
         "mod-p1": "Tu identidad digital verde. Registra acciones, sube de nivel con gamificación y obtén insignias por tus logros ambientales.",
         "mod-p2": "Descubre talleres, charlas y jornadas ambientales. Haz check-in con QR y suma puntos automáticamente por tu asistencia.",
-        "mod-p3": "Descubre comercios locales sostenibles y opciones de consumo consciente en tu entorno.",
+        "mod-p3": "Descubre comercios locales sostenibles y opciones de consumo consciente en tu entorno universitario.",
+        "mod-p4": "Pequeñas ideas, gran impacto. Aprende hábitos diarios con datos reales sobre el ahorro de CO2 y recursos que generas.",
         "check-1": "Perfil de impacto real", "check-2": "Sistema de puntos y XP", "check-3": "Canje de recompensas",
         "check-4": "Calendario de eventos", "check-5": "Check-in por código QR", "check-6": "Notificaciones en vivo",
-        "check-7": "Comercios sostenibles cercanos", "check-8": "Filtros por tipo de consumo", "check-9": "Red local eco-responsable",
+        "check-7": "Comercios eco-cercanos", "check-8": "Filtros de consumo eco", "check-9": "Red de impacto local",
+        "check-10": "Ahorro de -50L agua/día", "check-11": "Reducción huella CO2", "check-12": "Guías de residuo cero",
         "app-pts-label": "Mis Puntos Acumulados", "app-next-label": "Próxima Actividad", "app-event-name": "Taller de Compostaje", "app-event-time": "Mañana • 10:00 AM",
-        "app-title": "Transformando la vida en el campus", "app-desc": "Nuestra app no es solo una herramienta, es un incentivo constante para que la comunidad elija el camino sostenible.",
+        "app-title": "Transformando la vida en el campus", "app-desc": "Nuestra app no es solo una herramienta, es un incentivo constante para que la comunidad universitaria elija el camino sostenible de forma divertida y gratificante.",
         "feat-1-h": "Instantaneidad", "feat-1-p": "Escanea y recibe puntos al momento. Sin esperas.",
-        "feat-2-h": "Comunidad Social", "feat-2-p": "Compara tu impacto con el de otros centros."
+        "feat-2-h": "Comunidad Social", "feat-2-p": "Compara tu impacto con el de otros centros de la universidad.",
+        "social-title": "Síguenos en redes"
       },
       en: {
         "nav-home": "Home", "nav-modulos": "Pillars", "nav-ods": "Objectives", "nav-app": "App", "nav-demo": "Try App",
@@ -312,19 +328,22 @@
         "ods-h1": "Quality Education", "ods-h2": "Sustainable Communities", "ods-h3": "Climate Action",
         "ods-p1": "We promote active learning through workshops and practical environmental training.",
         "ods-p2": "We create an ecosystem where every action helps the university become greener.",
-        "ods-p3": "We reduce digital and physical carbon footprints through responsible habits.",
-        "pill-title": "The Three Pillars of GreenLoop", "pill-subtitle": "Our digital platform integrates everything you need to become a driver of university change.",
-        "mod-h1": "Sustainability ID", "mod-h2": "Active Agenda", "mod-h3": "Sustainable Map",
+        "ods-p3": "We reduce digital and physical carbon footprints through responsible consumption habits.",
+        "pill-title": "The Four Pillars of GreenLoop", "pill-subtitle": "Our digital platform integrates everything you need to become a driver of university change.",
+        "mod-h1": "Sustainability ID", "mod-h2": "Active Agenda", "mod-h3": "Sustainable Map", "mod-h4": "Sustainable Tips",
         "mod-p1": "Your green digital identity. Track actions, level up with gamification, and earn badges for your environmental achievements.",
-        "mod-p2": "Discover environmental workshops and talks. Check-in via QR and earn points automatically.",
-        "mod-p3": "Discover local sustainable businesses and conscious consumption options in your surroundings.",
+        "mod-p2": "Discover workshops and environmental talks. Check-in via QR and earn points automatically for your attendance.",
+        "mod-p3": "Discover local sustainable businesses and conscious consumption options in your university environment.",
+        "mod-p4": "Small ideas, big impact. Learn daily habits with real data on the CO2 and resource savings you generate.",
         "check-1": "Real impact profile", "check-2": "Points & XP system", "check-3": "Reward redemption",
         "check-4": "Events calendar", "check-5": "QR code check-in", "check-6": "Live notifications",
-        "check-7": "Nearby sustainable businesses", "check-8": "Filters by type of consumption", "check-9": "Local eco-responsible network",
+        "check-7": "Nearby eco-shops", "check-8": "Eco-consumption filters", "check-9": "Local impact network",
+        "check-10": "Sustainable tips by category", "check-11": "Practical ideas for everyday life", "check-12": "Small changes with a big impact",
         "app-pts-label": "My Earned Points", "app-next-label": "Next Activity", "app-event-name": "Composting Workshop", "app-event-time": "Tomorrow • 10:00 AM",
-        "app-title": "Transforming Campus Life", "app-desc": "Our app is not just a tool, it's a constant incentive for the community to choose the sustainable path.",
+        "app-title": "Transforming Campus Life", "app-desc": "Our app is not just a tool, it's a constant incentive for the community to choose the sustainable path in a fun way.",
         "feat-1-h": "Instancy", "feat-1-p": "Scan and receive points instantly. No waiting.",
-        "feat-2-h": "Social Community", "feat-2-p": "Compare your impact with other university centers."
+        "feat-2-h": "Social Community", "feat-2-p": "Compare your impact with other university centers.",
+        "social-title": "Follow us"
       }
     };
 
@@ -335,26 +354,26 @@
       document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
         if (translations[currentLang][key]) {
-            // Preservar los iconos de FontAwesome buscando el elemento <i>
-            const icon = el.querySelector('i');
-            if (icon) {
-                // Si el elemento tiene un icono, solo actualizamos el texto después del icono
-                const textNode = Array.from(el.childNodes).find(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "");
-                if (textNode) {
-                    textNode.textContent = " " + translations[currentLang][key];
-                } else {
-                  // Fallback: Si no hay nodo de texto, lo añadimos
-                  el.appendChild(document.createTextNode(" " + translations[currentLang][key]));
-                }
-            } else if (el.tagName === 'A' || el.tagName === 'BUTTON') {
-                el.childNodes.forEach(node => {
-                    if (node.nodeType === Node.TEXT_NODE) {
-                        node.textContent = translations[currentLang][key];
-                    }
-                });
+          const icon = el.querySelector('i');
+          if (icon) {
+            // If it has an icon, we only change the text after it
+            const textNode = Array.from(el.childNodes).find(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "");
+            if (textNode) {
+              textNode.textContent = " " + translations[currentLang][key];
             } else {
-                el.textContent = translations[currentLang][key];
+              el.appendChild(document.createTextNode(" " + translations[currentLang][key]));
             }
+          } else if (el.tagName === 'A' || el.tagName === 'BUTTON') {
+            // For links/buttons without specific inner icons, update all text nodes
+            el.childNodes.forEach(node => {
+              if (node.nodeType === Node.TEXT_NODE) {
+                node.textContent = translations[currentLang][key];
+              }
+            });
+          } else {
+            // Direct text update for titles/paragraphs
+            el.textContent = translations[currentLang][key];
+          }
         }
       });
 
