@@ -65,13 +65,14 @@
         <p data-key="hero-desc" class="text-xl text-slate-600 leading-relaxed mb-10 max-w-lg">
           Registra tus hábitos, asiste a eventos y visualiza tu impacto real en la universidad. Convierte tus acciones en recompensas.
         </p>
-<div class="flex flex-wrap gap-4 items-center">
-  <a href="#ods" data-key="btn-more" class="px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold text-lg hover:bg-slate-800 transition shadow-xl">Empezar ahora</a>
-  
-  <a href="https://www.paperloop.dev/presentation/" target="_blank" class="w-[60px] h-[60px] flex items-center justify-center bg-teal-50 text-teal-600 border border-teal-200 rounded-2xl hover:bg-teal-100 transition shadow-sm group">
-    <i class="fas fa-seedling text-2xl group-hover:scale-110 transition-transform"></i>
-  </a>
-</div>
+        <div class="flex flex-wrap gap-4 items-center">
+          <a href="#ods" data-key="btn-more" class="px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold text-lg hover:bg-slate-800 transition shadow-xl">Empezar ahora</a>
+          
+          <a href="https://www.paperloop.dev/presentation/" target="_blank" class="w-[60px] h-[60px] flex items-center justify-center bg-teal-50 text-teal-600 border border-teal-200 rounded-2xl hover:bg-teal-100 transition shadow-sm group">
+            <i class="fas fa-seedling text-2xl group-hover:scale-110 transition-transform"></i>
+          </a>
+        </div>
+      </div>
 
       <div class="relative flex justify-center lg:justify-end">
         <div class="w-full max-w-sm bg-white p-8 rounded-[2.5rem] shadow-2xl border border-slate-100">
@@ -143,7 +144,6 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        
         <div class="module-card p-8 bg-white rounded-[2rem] shadow-sm">
           <div class="w-14 h-14 bg-teal-100 text-teal-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
             <i class="fas fa-id-card"></i>
@@ -195,7 +195,6 @@
             <li data-key="check-12"><i class="fas fa-check text-lime-500 mr-2"></i> Pequeños cambios con gran impacto</li>
           </ul>
         </div>
-
       </div>
     </div>
   </section>
@@ -295,7 +294,7 @@
         "nav-home": "Inicio", "nav-modulos": "Pilares", "nav-ods": "Objetivos", "nav-app": "App", "nav-demo": "Probar App",
         "hero-tag": "Iniciativa Estudiantil 2025", "hero-title-1": "Gamificamos la", "hero-title-2": "Sostenibilidad del Campus",
         "hero-desc": "Registra tus hábitos, asiste a eventos y visualiza tu impacto real en la universidad. Convierte tus acciones en recompensas.",
-        "btn-more": "Empezar ahora", "btn-survey": "Encuesta",
+        "btn-more": "Empezar ahora",
         "card-label": "Impacto Real", "card-rank": "Nivel: Eco-Líder", "card-pts": "Puntos", "card-co2": "CO2 Evitado",
         "ods-h1": "Educación de Calidad", "ods-h2": "Comunidades Sostenibles", "ods-h3": "Acción por el Clima",
         "ods-p1": "Fomentamos el aprendizaje activo mediante talleres y formación ambiental práctica.",
@@ -321,7 +320,7 @@
         "nav-home": "Home", "nav-modulos": "Pillars", "nav-ods": "Objectives", "nav-app": "App", "nav-demo": "Try App",
         "hero-tag": "Student Initiative 2025", "hero-title-1": "Gamifying", "hero-title-2": "Campus Sustainability",
         "hero-desc": "Track your habits, attend events, and visualize your real impact at university. Turn actions into rewards.",
-        "btn-more": "Start now", "btn-survey": "Survey",
+        "btn-more": "Start now",
         "card-label": "Real Impact", "card-rank": "Level: Eco-Leader", "card-pts": "Points", "card-co2": "CO2 Saved",
         "ods-h1": "Quality Education", "ods-h2": "Sustainable Communities", "ods-h3": "Climate Action",
         "ods-p1": "We promote active learning through workshops and practical environmental training.",
@@ -354,7 +353,6 @@
         if (translations[currentLang][key]) {
           const icon = el.querySelector('i');
           if (icon) {
-            // If it has an icon, we only change the text after it
             const textNode = Array.from(el.childNodes).find(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "");
             if (textNode) {
               textNode.textContent = " " + translations[currentLang][key];
@@ -362,14 +360,12 @@
               el.appendChild(document.createTextNode(" " + translations[currentLang][key]));
             }
           } else if (el.tagName === 'A' || el.tagName === 'BUTTON') {
-            // For links/buttons without specific inner icons, update all text nodes
             el.childNodes.forEach(node => {
               if (node.nodeType === Node.TEXT_NODE) {
                 node.textContent = translations[currentLang][key];
               }
             });
           } else {
-            // Direct text update for titles/paragraphs
             el.textContent = translations[currentLang][key];
           }
         }
