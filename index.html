@@ -14,7 +14,7 @@
     .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
     .hero-pattern { background-color: #ffffff; background-image: radial-gradient(#14b8a6 0.5px, #ffffff 0.5px); background-size: 20px 20px; }
     .gradient-text { background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .module-card { transition: all 0.3s ease; border: 1px solid #f1f5f9; }
+    .module-card { transition: all 0.3s ease; border: 1px solid #f1f5f9; height: 100%; display: flex; flex-direction: column; }
     .module-card:hover { transform: translateY(-5px); border-color: #14b8a6; }
     .phone-mockup { width: 100%; max-width: 320px; aspect-ratio: 9 / 19; }
     .social-btn { @apply w-12 h-12 flex items-center justify-center rounded-2xl border border-slate-200 text-slate-400 transition-all duration-300; }
@@ -137,62 +137,75 @@
   </section>
 
   <section id="modulos" class="py-24 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-full mx-auto px-6">
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-extrabold mb-4" data-key="pill-title">Los cuatro pilares de GreenLoop</h2>
+        <h2 class="text-4xl font-extrabold mb-4" data-key="pill-title">Los pilares de GreenLoop</h2>
         <p class="text-slate-500 max-w-2xl mx-auto" data-key="pill-subtitle">Nuestra plataforma digital integra todo lo que necesitas para convertirte en un motor de cambio universitario.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="module-card p-8 bg-white rounded-[2rem] shadow-sm">
-          <div class="w-14 h-14 bg-teal-100 text-teal-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div class="module-card p-6 bg-white rounded-[2rem] shadow-sm">
+          <div class="w-12 h-12 bg-teal-100 text-teal-600 rounded-2xl flex items-center justify-center text-xl mb-6 shadow-sm">
             <i class="fas fa-id-card"></i>
           </div>
-          <h3 class="text-xl font-extrabold mb-4" data-key="mod-h1">Carné de Sostenibilidad</h3>
-          <p class="text-slate-600 text-sm leading-relaxed mb-6" data-key="mod-p1">Tu identidad digital verde. Registra acciones, sube de nivel con gamificación y obtén insignias por tus logros ambientales.</p>
-          <ul class="space-y-3 text-xs font-bold text-slate-500 uppercase">
+          <h3 class="text-lg font-extrabold mb-4" data-key="mod-h1">Carné de Sostenibilidad</h3>
+          <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow" data-key="mod-p1">Tu identidad digital verde. Registra acciones, sube de nivel con gamificación y obtén insignias por tus logros ambientales.</p>
+          <ul class="space-y-2 text-[10px] font-bold text-slate-500 uppercase mt-auto">
             <li data-key="check-1"><i class="fas fa-check text-teal-500 mr-2"></i> Perfil de impacto real</li>
             <li data-key="check-2"><i class="fas fa-check text-teal-500 mr-2"></i> Sistema de puntos y XP</li>
             <li data-key="check-3"><i class="fas fa-check text-teal-500 mr-2"></i> Canje de recompensas</li>
           </ul>
         </div>
 
-        <div class="module-card p-8 bg-white rounded-[2rem] shadow-sm">
-          <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
+        <div class="module-card p-6 bg-white rounded-[2rem] shadow-sm">
+          <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-xl mb-6 shadow-sm">
             <i class="fas fa-calendar-check"></i>
           </div>
-          <h3 class="text-xl font-extrabold mb-4" data-key="mod-h2">Agenda Activa</h3>
-          <p class="text-slate-600 text-sm leading-relaxed mb-6" data-key="mod-p2">Descubre talleres, charlas y jornadas ambientales. Haz check-in con QR y suma puntos automáticamente por tu asistencia.</p>
-          <ul class="space-y-3 text-xs font-bold text-slate-500 uppercase">
+          <h3 class="text-lg font-extrabold mb-4" data-key="mod-h2">Agenda Activa</h3>
+          <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow" data-key="mod-p2">Descubre talleres, charlas y jornadas ambientales. Haz check-in con QR y suma puntos automáticamente por tu asistencia.</p>
+          <ul class="space-y-2 text-[10px] font-bold text-slate-500 uppercase mt-auto">
             <li data-key="check-4"><i class="fas fa-check text-blue-500 mr-2"></i> Calendario de eventos</li>
             <li data-key="check-5"><i class="fas fa-check text-blue-500 mr-2"></i> Check-in por código QR</li>
             <li data-key="check-6"><i class="fas fa-check text-blue-500 mr-2"></i> Notificaciones en vivo</li>
           </ul>
         </div>
 
-        <div class="module-card p-8 bg-white rounded-[2rem] shadow-sm">
-          <div class="w-14 h-14 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
+        <div class="module-card p-6 bg-white rounded-[2rem] shadow-sm">
+          <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center text-xl mb-6 shadow-sm">
             <i class="fas fa-map-marked-alt"></i>
           </div>
-          <h3 class="text-xl font-extrabold mb-4" data-key="mod-h3">Mapa Sostenible</h3>
-          <p class="text-slate-600 text-sm leading-relaxed mb-6" data-key="mod-p3">Descubre comercios locales sostenibles y opciones de consumo consciente en tu entorno universitario.</p>
-          <ul class="space-y-3 text-xs font-bold text-slate-500 uppercase">
+          <h3 class="text-lg font-extrabold mb-4" data-key="mod-h3">Mapa Sostenible</h3>
+          <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow" data-key="mod-p3">Descubre comercios locales sostenibles y opciones de consumo consciente en tu entorno universitario.</p>
+          <ul class="space-y-2 text-[10px] font-bold text-slate-500 uppercase mt-auto">
             <li data-key="check-7"><i class="fas fa-check text-orange-500 mr-2"></i> Comercios eco-cercanos</li>
             <li data-key="check-8"><i class="fas fa-check text-orange-500 mr-2"></i> Filtros de consumo eco</li>
             <li data-key="check-9"><i class="fas fa-check text-orange-500 mr-2"></i> Red de impacto local</li>
           </ul>
         </div>
 
-        <div class="module-card p-8 bg-white rounded-[2rem] shadow-sm">
-          <div class="w-14 h-14 bg-lime-100 text-lime-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
+        <div class="module-card p-6 bg-white rounded-[2rem] shadow-sm">
+          <div class="w-12 h-12 bg-lime-100 text-lime-600 rounded-2xl flex items-center justify-center text-xl mb-6 shadow-sm">
             <i class="fas fa-leaf"></i>
           </div>
-          <h3 class="text-xl font-extrabold mb-4" data-key="mod-h4">Tips Sostenibles</h3>
-          <p class="text-slate-600 text-sm leading-relaxed mb-6" data-key="mod-p4">Pequeñas ideas, gran impacto. Aprende hábitos diarios con datos reales sobre el ahorro de CO2 y recursos que generas.</p>
-          <ul class="space-y-3 text-xs font-bold text-slate-500 uppercase">
+          <h3 class="text-lg font-extrabold mb-4" data-key="mod-h4">Tips Sostenibles</h3>
+          <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow" data-key="mod-p4">Pequeñas ideas, gran impacto. Aprende hábitos diarios con datos reales sobre el ahorro de CO2 y recursos que generas.</p>
+          <ul class="space-y-2 text-[10px] font-bold text-slate-500 uppercase mt-auto">
             <li data-key="check-10"><i class="fas fa-check text-lime-500 mr-2"></i> Tips sostenibles por categoría</li>
             <li data-key="check-11"><i class="fas fa-check text-lime-500 mr-2"></i> Ideas prácticas para el día a día</li>
             <li data-key="check-12"><i class="fas fa-check text-lime-500 mr-2"></i> Pequeños cambios con gran impacto</li>
+          </ul>
+        </div>
+
+        <div class="module-card p-6 bg-white rounded-[2rem] shadow-sm">
+          <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-xl mb-6 shadow-sm">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3 class="text-lg font-extrabold mb-4" data-key="mod-h5">Comunidad</h3>
+          <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow" data-key="mod-p5">Un espacio colaborativo donde los estudiantes apoyan acciones sostenibles juntos y comparten recursos.</p>
+          <ul class="space-y-2 text-[10px] font-bold text-slate-500 uppercase mt-auto">
+            <li data-key="check-13"><i class="fas fa-check text-indigo-500 mr-2"></i> Car sharing universitario</li>
+            <li data-key="check-14"><i class="fas fa-check text-indigo-500 mr-2"></i> Marketplace de intercambio</li>
+            <li data-key="check-15"><i class="fas fa-check text-indigo-500 mr-2"></i> Repair cafe</li>
           </ul>
         </div>
       </div>
@@ -300,16 +313,18 @@
         "ods-p1": "Fomentamos el aprendizaje activo mediante talleres y formación ambiental práctica.",
         "ods-p2": "Creamos un ecosistema donde cada acción ayuda a que la universidad sea más verde.",
         "ods-p3": "Reducimos la huella de carbono digital y física mediante hábitos de consumo responsable.",
-        "pill-title": "Los cuatro pilares de GreenLoop", "pill-subtitle": "Nuestra plataforma digital integra todo lo que necesitas para convertirte en un motor de cambio universitario.",
-        "mod-h1": "Carné de Sostenibilidad", "mod-h2": "Agenda Activa", "mod-h3": "Mapa Sostenible", "mod-h4": "Tips Sostenibles",
+        "pill-title": "Los pilares de GreenLoop", "pill-subtitle": "Nuestra plataforma digital integra todo lo que necesitas para convertirte en un motor de cambio universitario.",
+        "mod-h1": "Carné de Sostenibilidad", "mod-h2": "Agenda Activa", "mod-h3": "Mapa Sostenible", "mod-h4": "Tips Sostenibles", "mod-h5": "Comunidad",
         "mod-p1": "Tu identidad digital verde. Registra acciones, sube de nivel con gamificación y obtén insignias por tus logros ambientales.",
         "mod-p2": "Descubre talleres, charlas y jornadas ambientales. Haz check-in con QR y suma puntos automáticamente por tu asistencia.",
         "mod-p3": "Descubre comercios locales sostenibles y opciones de consumo consciente en tu entorno universitario.",
         "mod-p4": "Pequeñas ideas, gran impacto. Aprende hábitos diarios con datos reales sobre el ahorro de CO2 y recursos que generas.",
+        "mod-p5": "Un espacio colaborativo donde los estudiantes apoyan acciones sostenibles juntos y comparten recursos.",
         "check-1": "Perfil de impacto real", "check-2": "Sistema de puntos y XP", "check-3": "Canje de recompensas",
         "check-4": "Calendario de eventos", "check-5": "Check-in por código QR", "check-6": "Notificaciones en vivo",
         "check-7": "Comercios eco-cercanos", "check-8": "Filtros de consumo eco", "check-9": "Red de impacto local",
-        "check-10": "TIPS SOSTENIBLES POR CATEGORÍA", "check-11": "IDEAS PRÁCTICAS PARA EL DÍA A DÍA", "check-12": "PEQUEÑOS CAMBIOS CON GRAN IMPACTO",
+        "check-10": "Tips sostenibles por categoría", "check-11": "Ideas prácticas para el día a día", "check-12": "Pequeños cambios con gran impacto",
+        "check-13": "Car sharing universitario", "check-14": "Marketplace de intercambio", "check-15": "Repair cafe",
         "app-pts-label": "Mis Puntos Acumulados", "app-next-label": "Próxima Actividad", "app-event-name": "Taller de Compostaje", "app-event-time": "Mañana • 10:00 AM",
         "app-title": "Transformando la vida en el campus", "app-desc": "Nuestra app no es solo una herramienta, es un incentivo constante para que la comunidad universitaria elija el camino sostenible de forma divertida y gratificante.",
         "feat-1-h": "Instantaneidad", "feat-1-p": "Escanea y recibe puntos al momento. Sin esperas.",
@@ -326,16 +341,18 @@
         "ods-p1": "We promote active learning through workshops and practical environmental training.",
         "ods-p2": "We create an ecosystem where every action helps the university become greener.",
         "ods-p3": "We reduce digital and physical carbon footprints through responsible consumption habits.",
-        "pill-title": "The Four Pillars of GreenLoop", "pill-subtitle": "Our digital platform integrates everything you need to become a driver of university change.",
-        "mod-h1": "Sustainability ID", "mod-h2": "Active Agenda", "mod-h3": "Sustainable Map", "mod-h4": "Sustainable Tips",
+        "pill-title": "The Pillars of GreenLoop", "pill-subtitle": "Our digital platform integrates everything you need to become a driver of university change.",
+        "mod-h1": "Sustainability ID", "mod-h2": "Active Agenda", "mod-h3": "Sustainable Map", "mod-h4": "Sustainable Tips", "mod-h5": "Community",
         "mod-p1": "Your green digital identity. Track actions, level up with gamification, and earn badges for your environmental achievements.",
         "mod-p2": "Discover workshops and environmental talks. Check-in via QR and earn points automatically for your attendance.",
         "mod-p3": "Discover local sustainable businesses and conscious consumption options in your university environment.",
         "mod-p4": "Small ideas, big impact. Learn daily habits with real data on the CO2 and resource savings you generate.",
+        "mod-p5": "A collaborative space where students can support sustainable actions together and share resources.",
         "check-1": "Real impact profile", "check-2": "Points & XP system", "check-3": "Reward redemption",
         "check-4": "Events calendar", "check-5": "QR code check-in", "check-6": "Live notifications",
         "check-7": "Nearby eco-shops", "check-8": "Eco-consumption filters", "check-9": "Local impact network",
         "check-10": "Sustainable tips by category", "check-11": "Practical ideas for everyday life", "check-12": "Small changes with a big impact",
+        "check-13": "University car sharing", "check-14": "Item exchange marketplace", "check-15": "Repair cafe",
         "app-pts-label": "My Earned Points", "app-next-label": "Next Activity", "app-event-name": "Composting Workshop", "app-event-time": "Tomorrow • 10:00 AM",
         "app-title": "Transforming Campus Life", "app-desc": "Our app is not just a tool, it's a constant incentive for the community to choose the sustainable path in a fun way.",
         "feat-1-h": "Instancy", "feat-1-p": "Scan and receive points instantly. No waiting.",
